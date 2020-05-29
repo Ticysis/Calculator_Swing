@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <file url="file://$PROJECT_DIR$/src/LERN/BigTime.java" />
+      <file url="file://$PROJECT_DIR$/src/LERN/HWK/AccountTest.java" />
+      <file url="file://$PROJECT_DIR$/src/LERN/CLAS/多态.java" />
+      <file url="file://$PROJECT_DIR$/src/LERN/HWK/CartTest.java" />
+      <file url="file://$PROJECT_DIR$/src/LERN/LEAN/继承.java" />
+      <file url="file://$PROJECT_DIR$/src/LERN/CLAS/buJu.java" />
+      <file url="file://$PROJECT_DIR$/src/LERN/HWK/OrderTest.java" />
+      <file url="file://$PROJECT_DIR$/src/LERN/HWK/FanTest.java" />
+    </excludeFromCompile>
+  </component>
+</project>
