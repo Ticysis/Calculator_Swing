@@ -205,6 +205,7 @@ public class CaluaV2 extends JFrame { //类Calua继承了JFrame类（窗口类）
                             if (label1.getText().length() >= 15) {
                                 JOptionPane.showMessageDialog(null, "超出了15个字符的限制", "警告", JOptionPane.WARNING_MESSAGE);
                                 label1.setText("");
+                                JOptionPane.showMessageDialog(null,"重置","Tips",JOptionPane.WARNING_MESSAGE);
                             }
                         }
                     }catch (Exception e){

@@ -10,14 +10,14 @@ import java.awt.event.WindowEvent;
 
 /**
  * @author Ticysis.Aimbo
- * @By Skywither
+ *
  * @Description This is another Project For Java
- * @DesignedBy JDK11.0
+ * @JDK JDK11.0
  *
  *
  **/
 public class txtRer extends JFrame {
-    private int count=546384;
+    private int count=10;
     public txtRer(){
         try{
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -38,19 +38,16 @@ public class txtRer extends JFrame {
         this.setContentPane(jPanel);
 
         JLabel jLabel = new JLabel();
-        jLabel.setFont(new Font("dialog",20,100));
+        jLabel.setFont(new Font("dialog",20,15));
 
         JButton jButton = new JButton("Click");
         jButton.setMnemonic('M');
        // jButton.setBounds(20,20,400,350);
         jPanel.add(jButton);
         jPanel.add(jLabel);
-        jButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jLabel.setText("已经点击了:"+count+"次");
-                count+=1;
-            }
+        jButton.addActionListener(e -> {
+            jLabel.setText("已经点击了:"+count+"次");
+            count+=1;
         });
         this.setVisible(true);
     }
