@@ -1,9 +1,9 @@
 package APP.LTS;
 
-import java.awt.*; //µ¼Èë°üawt
+import java.awt.*; //å¯¼å…¥åŒ…awt
 import java.awt.event.*;
 import java.net.URL;
-import java.awt.SystemTray;//µ¼Èë°ü
+import java.awt.SystemTray;//å¯¼å…¥åŒ…
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.*;
@@ -18,39 +18,39 @@ import APP.NEX.MyJFrame;
  * @Descript This is the calculator changed by Ticysis
  * @since JDK 11.0
  * #########
- * @Version 1.0  ->>  ·ÂÕÕÍøÉÏ±Ê¼Ç±àÐ´²¢ÇÒ×öÁËÊÊµ±¸Ä¶¯
- * @Version 2.1  ->>  ¼ÓÈëÁËÐÂµÄ²¼¾ÖºÍÊ±¼äÏÔÊ¾(Thread),¼ÓÈëÁËÍÐÅÌÍ¼±ê
- * @Version 3.1  ->>  ´´½¨ÁË¶à¸öÏß³Ì£¬Ìí¼ÓÁËÐÂµÄ²¼¾Ö£¬Ìí¼ÓÁË²Ëµ¥À¸
- * @Version 4.2  ->>  ÐÂ¶¯×÷-ÌùºÏÒþ²Ø¡£ºÏ²¢²¿·ÖÏß³Ì
+ * @Version 1.0  ->>  ä»¿ç…§ç½‘ä¸Šç¬”è®°ç¼–å†™å¹¶ä¸”åšäº†é€‚å½“æ”¹åŠ¨
+ * @Version 2.1  ->>  åŠ å…¥äº†æ–°çš„å¸ƒå±€å’Œæ—¶é—´æ˜¾ç¤º(Thread),åŠ å…¥äº†æ‰˜ç›˜å›¾æ ‡
+ * @Version 3.1  ->>  åˆ›å»ºäº†å¤šä¸ªçº¿ç¨‹ï¼Œæ·»åŠ äº†æ–°çš„å¸ƒå±€ï¼Œæ·»åŠ äº†èœå•æ 
+ * @Version 4.2  ->>  æ–°åŠ¨ä½œ-è´´åˆéšè—ã€‚åˆå¹¶éƒ¨åˆ†çº¿ç¨‹
  * #########
  */
 
-public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
-    private static final long serialVersionUID = 1L; //£¿£¿£¿ß÷ß÷ß÷£¿£¿£¿//ÊÊÓÃÓÚJavaµÄÐòÁÐ»¯»úÖÆ
+public class CaluaV2 extends JFrame { //ç±»Caluaç»§æ‰¿äº†JFrameç±»ï¼ˆçª—å£ç±»ï¼‰
+    private static final long serialVersionUID = 1L; //ï¼Ÿï¼Ÿï¼Ÿå–µå–µå–µï¼Ÿï¼Ÿï¼Ÿ//é€‚ç”¨äºŽJavaçš„åºåˆ—åŒ–æœºåˆ¶
 
     private double version = 4.1;
 
-    private StringBuilder sBuilder = new StringBuilder(); //´æ·Å¼ÆËãÊ½×Ó
-    private Double a; //´æ´¢ÖÐ¼ä±äÁ¿-µÚÒ»¸öÊý
-    private Double b; //´æ´¢ÖÐ¼ä±äÁ¿-µÚ¶þ¸öÊý
-    private Double result; //´æ´¢½á¹û
-    private Integer ip; //±íÊ¾¼Ó¼õ³Ë³ý
-    private SystemTray systemTray; //ÍÐÅÌ
-    private TrayIcon trayIcon; //ÍÐÅÌÍ¼±ê
-    private static Thread t;  //´«ËµÖÐµÄ¶àÏß³Ì
+    private StringBuilder sBuilder = new StringBuilder(); //å­˜æ”¾è®¡ç®—å¼å­
+    private Double a; //å­˜å‚¨ä¸­é—´å˜é‡-ç¬¬ä¸€ä¸ªæ•°
+    private Double b; //å­˜å‚¨ä¸­é—´å˜é‡-ç¬¬äºŒä¸ªæ•°
+    private Double result; //å­˜å‚¨ç»“æžœ
+    private Integer ip; //è¡¨ç¤ºåŠ å‡ä¹˜é™¤
+    private SystemTray systemTray; //æ‰˜ç›˜
+    private TrayIcon trayIcon; //æ‰˜ç›˜å›¾æ ‡
+    private static Thread t;  //ä¼ è¯´ä¸­çš„å¤šçº¿ç¨‹
     private int markIcon = 0;
 
-    public CaluaV2() { //¹¹Ôì·½·¨
+    public CaluaV2() { //æž„é€ æ–¹æ³•
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) { //ÉèÖÃUI·ç¸ñ
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) { //è®¾ç½®UIé£Žæ ¼
             e.printStackTrace();
         }
-        this.setTitle("Ò»¸ö»òÐíÊÇÀ±¼¦¼ÆËãÆ÷");//ÉèÖÃ±êÌâ
-        this.setSize(310, 650);//ÉèÖÃ´óÐ¡
-        this.setLocationRelativeTo(null);//ÉèÖÃÄ¬ÈÏÎ»ÖÃ-¾ÓÖÐ
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//ÉèÖÃ¹Ø±Õ·½Ê½(Ô­À´ÊÇExit.ON.CLOSE)
-                this.setResizable(false); //²»ÄÜÍÏ¶¯´°Ìå´óÐ¡
+        this.setTitle("ä¸€ä¸ªæˆ–è®¸æ˜¯è¾£é¸¡è®¡ç®—å™¨");//è®¾ç½®æ ‡é¢˜
+        this.setSize(310, 650);//è®¾ç½®å¤§å°
+        this.setLocationRelativeTo(null);//è®¾ç½®é»˜è®¤ä½ç½®-å±…ä¸­
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//è®¾ç½®å…³é—­æ–¹å¼(åŽŸæ¥æ˜¯Exit.ON.CLOSE)
+                this.setResizable(false); //ä¸èƒ½æ‹–åŠ¨çª—ä½“å¤§å°
                 ClassLoader classLoader2 = this.getClass().getClassLoader();
                 URL url2 = classLoader2.getResource("Resource/easyicon/1226431.png");
                 Image image = Toolkit.getDefaultToolkit().getImage(url2); //Can`t use ImageIcon Because awt=/=swing
@@ -62,13 +62,13 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
                     }
                 });
 
-
+                // ç³»ç»Ÿæ‰˜ç›˜
                 try {
                     if (SystemTray.isSupported()) {
                         PopupMenu pop = new PopupMenu();
                         MenuItem mai = new MenuItem("Open Main Windows");
                         MenuItem exitalready = new MenuItem("Exit Without Asking");
-                MenuItem exit = new MenuItem("Exit The Programme");
+                MenuItem exit = new MenuItem("é€€å‡ºç¨‹åº(EXIT)");
                 pop.add(mai);
                 pop.add(exitalready);
                 pop.add(exit);
@@ -82,7 +82,7 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         int exNum = JOptionPane.showConfirmDialog(null, "\u771f\u7684\u8981\u9000\u51fa\u5417\u003f", "Exit Question", JOptionPane.YES_NO_OPTION);
-                        if (exNum == JOptionPane.YES_OPTION) {   //ÕæµÄÒªÍË³öÂð?
+                        if (exNum == JOptionPane.YES_OPTION) {   //çœŸçš„è¦é€€å‡ºå—?
                             System.exit(0);
                         }
                     }
@@ -90,19 +90,19 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
                 exitalready.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        System.out.println("ÔËÐÐÁËÖ±½ÓÍË³ö³ÌÐò");
+                        System.out.println("è¿è¡Œäº†ç›´æŽ¥é€€å‡ºç¨‹åº");
                         System.exit(0);
                     }
                 });
 
 
-                ClassLoader classLoader1 = this.getClass().getClassLoader();  //ClassLoader¼ÓÔØÍ¼±ê
+                ClassLoader classLoader1 = this.getClass().getClassLoader();  //ClassLoaderåŠ è½½å›¾æ ‡
                 URL url1 = classLoader1.getResource("Resource/easyicon/1120534.png");
                 ImageIcon imageIcon1 = new ImageIcon(url1);
 
-                trayIcon = new TrayIcon(imageIcon1.getImage(), "ÎÒÊÇÔüÔü¼ÆËãÆ÷V2.0", pop); //ÏµÍ³ÍÐÅÌÍ¼±ê
+                trayIcon = new TrayIcon(imageIcon1.getImage(), "æˆ‘æ˜¯æ¸£æ¸£è®¡ç®—å™¨V2.0", pop); //ç³»ç»Ÿæ‰˜ç›˜å›¾æ ‡
                 trayIcon.setImageAutoSize(true);
-                systemTray = SystemTray.getSystemTray();  //ÏµÍ³ÍÐÅÌ
+                systemTray = SystemTray.getSystemTray();  //ç³»ç»Ÿæ‰˜ç›˜
                 trayIcon.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
@@ -116,17 +116,17 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
             }
 
         } catch (AWTException e) {
-            System.out.println("AwtException·¢ÉúÁË");
+            System.out.println("AwtExceptionå‘ç”Ÿäº†");
         }
 
-        JMenuBar jMenuBar = new JMenuBar();  //==============================²Ë==========µ¥=========À¸=============================
+        JMenuBar jMenuBar = new JMenuBar();  //==============================èœ==========å•=========æ =============================
         this.setJMenuBar(jMenuBar);
-        JMenu jMenuFile = new JMenu("ÎÄ¼þ(F)");
-        JMenu jMenuEdit = new JMenu("´°¿Ú(W)");
-        JMenu jMenuSet  = new JMenu("ÉèÖÃ(S)");
-        JMenu jMenuAbout= new JMenu("¹ØÓÚ(A)");
+        JMenu jMenuFile = new JMenu("æ–‡ä»¶(F)");
+        JMenu jMenuEdit = new JMenu("çª—å£(W)");
+        JMenu jMenuSet  = new JMenu("è®¾ç½®(S)");
+        JMenu jMenuAbout= new JMenu("å…³äºŽ(A)");
         jMenuBar.add(jMenuFile);
-        JMenuItem jMenuItemExit = new JMenuItem("Ö±½ÓÍË³ö");
+        JMenuItem jMenuItemExit = new JMenuItem("ç›´æŽ¥é€€å‡º");
         jMenuItemExit.addActionListener(e -> System.exit(0));
         jMenuFile.add(jMenuItemExit);
 
@@ -136,15 +136,15 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
         ClassLoader classLoader3 = this.getClass().getClassLoader();
         URL url3 = classLoader3.getResource("Resource/select.png");
         ImageIcon imageIcon3 = new ImageIcon(url3);
-        JMenuItem jMenuItemOpenTop = new JMenuItem("¿ªÆôÊ¼ÖÕÖÃ¶¥");
+        JMenuItem jMenuItemOpenTop = new JMenuItem("å¼€å¯å§‹ç»ˆç½®é¡¶");
         jMenuItemOpenTop.addActionListener(e -> {
-            System.out.println("µã»÷ÁËÊ¼ÖÕÖÃ¶¥");
+            System.out.println("ç‚¹å‡»äº†å§‹ç»ˆç½®é¡¶");
             this.setAlwaysOnTop(true);
             markIcon=1;
         });
-        JMenuItem jMenuItemClosTop = new JMenuItem("¹Ø±ÕÊ¼ÖÕÖÃ¶¥");
+        JMenuItem jMenuItemClosTop = new JMenuItem("å…³é—­å§‹ç»ˆç½®é¡¶");
         jMenuItemClosTop.addActionListener(e -> {
-            System.out.println("µã»÷ÁËÈ¡ÏûÊ¼ÖÕÖÃ¶¥");
+            System.out.println("ç‚¹å‡»äº†å–æ¶ˆå§‹ç»ˆç½®é¡¶");
             this.setAlwaysOnTop(false);
             markIcon=0;
         });
@@ -155,35 +155,35 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
         jMenuBar.add(jMenuAbout);
 
 
-        JPanel panel = new JPanel();//newÒ»¸öÃæ°å=======================================Ãæ==°å==±ê==Ç©==Éè==ÖÃ==================================
-        JPanel pane2 = new JPanel();//newµÚ¶þ¸öÃæ°å
-        JPanel paneLabel = new JPanel(); //Ìí¼ÓÓÃ×÷ÏÔÊ¾´¦µÄÃæ°å
-        JPanel paneNum = new JPanel(); //ÏÔÊ¾Êý×Ö¼üµÄÃæ°å
+        JPanel panel = new JPanel();//newä¸€ä¸ªé¢æ¿=======================================é¢==æ¿==æ ‡==ç­¾==è®¾==ç½®==================================
+        JPanel pane2 = new JPanel();//newç¬¬äºŒä¸ªé¢æ¿
+        JPanel paneLabel = new JPanel(); //æ·»åŠ ç”¨ä½œæ˜¾ç¤ºå¤„çš„é¢æ¿
+        JPanel paneNum = new JPanel(); //æ˜¾ç¤ºæ•°å­—é”®çš„é¢æ¿
         paneNum.setLayout(new GridLayout(6,3));
 
-        this.getContentPane().add(panel);//Ìí¼ÓÃæ°åµ½´°¿Ú
+        this.getContentPane().add(panel);//æ·»åŠ é¢æ¿åˆ°çª—å£
         this.add(paneLabel,BorderLayout.NORTH);
         this.add(paneNum,BorderLayout.CENTER);
         this.add(pane2,BorderLayout.SOUTH);
-        panel.setLayout(null);//ÉèÖÃ²¼¾Ö¹ÜÀíÆ÷-null
+        panel.setLayout(null);//è®¾ç½®å¸ƒå±€ç®¡ç†å™¨-null
 
-        JLabel checkLabel = new JLabel(); //´´½¨¼à¿ØÓÃ±êÇ©
+        JLabel checkLabel = new JLabel(); //åˆ›å»ºç›‘æŽ§ç”¨æ ‡ç­¾
 
-        JLabel label1 = new JLabel();//newÒ»¸ö±êÇ©
-        label1.setBounds(0, 0, 300, 50);//ÉèÖÃlabelµÄ·¶Î§
-        label1.setFont(new Font("dialog", 1, 30));//ÉèÖÃ×ÖÌå
-        label1.setOpaque(true);//ÉèÖÃ²»Í¸Ã÷Îªtrue
-        label1.setBackground(Color.WHITE);//ÉèÖÃ±³¾°Îª°×É«
+        JLabel label1 = new JLabel();//newä¸€ä¸ªæ ‡ç­¾
+        label1.setBounds(0, 0, 300, 50);//è®¾ç½®labelçš„èŒƒå›´
+        label1.setFont(new Font("dialog", 1, 30));//è®¾ç½®å­—ä½“
+        label1.setOpaque(true);//è®¾ç½®ä¸é€æ˜Žä¸ºtrue
+        label1.setBackground(Color.WHITE);//è®¾ç½®èƒŒæ™¯ä¸ºç™½è‰²
         paneLabel.setPreferredSize(new Dimension(300,70));
-        paneLabel.setBorder(BorderFactory.createTitledBorder("µ±Ç°°æ±¾£º"+version));
-        paneLabel.add(label1);//ÏòÃæ°åÌí¼Ólabel
+        paneLabel.setBorder(BorderFactory.createTitledBorder("å½“å‰ç‰ˆæœ¬ï¼š"+version));
+        paneLabel.add(label1);//å‘é¢æ¿æ·»åŠ label
 
-        Thread maMOThread = new Thread(new Runnable() {  //======================================¼à¿ØÓëÊØ»¤=====================================
+        Thread maMOThread = new Thread(new Runnable() {  //======================================ç›‘æŽ§ä¸Žå®ˆæŠ¤=====================================
             @Override
             public void run() {
                 while (true) {
                     try {
-                        System.out.println("µ±Ç°markIcon×´Ì¬>>>"+markIcon);
+                        System.out.println("å½“å‰markIconçŠ¶æ€>>>"+markIcon);
                         Thread.sleep(450);
                         if(markIcon==1){
                             jMenuItemOpenTop.setIcon(imageIcon3);
@@ -195,7 +195,7 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
                         }
 
                     }catch (Exception e){
-                        System.out.println("Í¼±êÇÐ»»³ö´íÁË");
+                        System.out.println("å›¾æ ‡åˆ‡æ¢å‡ºé”™äº†");
                     }
 
                     try {
@@ -203,26 +203,26 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
                             Thread.sleep(500);
                             System.out.println("label1.length>>>>>" + label1.getText().length());
                             if (label1.getText().length() >= 15) {
-                                JOptionPane.showMessageDialog(null, "³¬³öÁË15¸ö×Ö·ûµÄÏÞÖÆ", "¾¯¸æ", JOptionPane.WARNING_MESSAGE);
+                                JOptionPane.showMessageDialog(null, "è¶…å‡ºäº†15ä¸ªå­—ç¬¦çš„é™åˆ¶", "è­¦å‘Š", JOptionPane.WARNING_MESSAGE);
                                 label1.setText("");
-                                JOptionPane.showMessageDialog(null,"ÖØÖÃ","Tips",JOptionPane.WARNING_MESSAGE);
+                                JOptionPane.showMessageDialog(null,"é‡ç½®","Tips",JOptionPane.WARNING_MESSAGE);
                             }
                         }
                     }catch (Exception e){
-                        System.out.println("×Ö·û¼àÊÓÏß³Ì³ö´íÁË");
-                        System.out.println("ÏÂÃæÊÇÔ­Òò>>>>>>>");
+                        System.out.println("å­—ç¬¦ç›‘è§†çº¿ç¨‹å‡ºé”™äº†");
+                        System.out.println("ä¸‹é¢æ˜¯åŽŸå› >>>>>>>");
                         e.printStackTrace();
-                        System.out.println("<<<<<<<Êä³öÍê³É£¡");
+                        System.out.println("<<<<<<<è¾“å‡ºå®Œæˆï¼");
                     }
                 }
             }
         });
-        maMOThread.setName("¼à¿ØÓëÊØ»¤³ÌÐò");
+        maMOThread.setName("ç›‘æŽ§ä¸Žå®ˆæŠ¤ç¨‹åº");
         maMOThread.start();
 
 
         JLabel label2 = new JLabel();
-        Font labelFont = new Font("¿¬Ìå",1,15);
+        Font labelFont = new Font("æ¥·ä½“",1,15);
         label2.setPreferredSize(new Dimension(300,55));
        // label2.setBounds(0, 400, 300, 50);
         label2.setFont(labelFont);
@@ -231,29 +231,29 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
         label2.setForeground(Color.BLACK);
 
 
-        JButton b1 = new JButton("1");//´´½¨Ò»¸ö°´Å¥£¬ÏÔÊ¾ÎÄ±¾Îª1
-        JButton b2 = new JButton("2");//´´½¨Ò»¸ö°´Å¥£¬ÏÔÊ¾ÎÄ±¾Îª2
-        JButton b3 = new JButton("3");//´´½¨Ò»¸ö°´Å¥£¬ÏÔÊ¾ÎÄ±¾Îª3
-        JButton b4 = new JButton("4");//´´½¨Ò»¸ö°´Å¥£¬ÏÔÊ¾ÎÄ±¾Îª4
-        JButton b5 = new JButton("5");//´´½¨Ò»¸ö°´Å¥£¬ÏÔÊ¾ÎÄ±¾Îª5
-        JButton b6 = new JButton("6");//´´½¨Ò»¸ö°´Å¥£¬ÏÔÊ¾ÎÄ±¾Îª6
-        JButton b7 = new JButton("7");//´´½¨Ò»¸ö°´Å¥£¬ÏÔÊ¾ÎÄ±¾Îª7
-        JButton b8 = new JButton("8");//´´½¨Ò»¸ö°´Å¥£¬ÏÔÊ¾ÎÄ±¾Îª8
-        JButton b9 = new JButton("9");//´´½¨Ò»¸ö°´Å¥£¬ÏÔÊ¾ÎÄ±¾Îª9
-        JButton b0 = new JButton("0");//´´½¨Ò»¸ö°´Å¥£¬ÏÔÊ¾ÎÄ±¾Îª0
-        JButton ad = new JButton("+");//´´½¨Ò»¸ö°´Å¥£¬ÏÔÊ¾ÎÄ±¾Îª+
-        JButton mn = new JButton("-");//´´½¨Ò»¸ö°´Å¥£¬ÏÔÊ¾ÎÄ±¾Îª-
-        JButton xs = new JButton("*");//´´½¨Ò»¸ö°´Å¥£¬ÏÔÊ¾ÎÄ±¾Îª*
-        JButton cu = new JButton("¡Â");//´´½¨Ò»¸ö°´Å¥£¬ÏÔÊ¾ÎÄ±¾Îª¡Â
-        JButton eq = new JButton("=");//´´½¨Ò»¸ö°´Å¥£¬ÏÔÊ¾ÎÄ±¾Îª=
-        JButton po = new JButton(".");//´´½¨Ò»¸ö°´Å¥£¬ÏÔÊ¾ÎÄ±¾Îª.
-        JButton bk = new JButton("¡û");//´´½¨Ò»¸ö°´Å¥£¬ÏÔÊ¾ÎÄ±¾Îª¡û
-        JButton cl = new JButton("C");//´´½¨Ò»¸ö°´Å¥£¬ÏÔÊ¾ÎÄ±¾ÎªC
+        JButton b1 = new JButton("1");//åˆ›å»ºä¸€ä¸ªæŒ‰é’®ï¼Œæ˜¾ç¤ºæ–‡æœ¬ä¸º1
+        JButton b2 = new JButton("2");//åˆ›å»ºä¸€ä¸ªæŒ‰é’®ï¼Œæ˜¾ç¤ºæ–‡æœ¬ä¸º2
+        JButton b3 = new JButton("3");//åˆ›å»ºä¸€ä¸ªæŒ‰é’®ï¼Œæ˜¾ç¤ºæ–‡æœ¬ä¸º3
+        JButton b4 = new JButton("4");//åˆ›å»ºä¸€ä¸ªæŒ‰é’®ï¼Œæ˜¾ç¤ºæ–‡æœ¬ä¸º4
+        JButton b5 = new JButton("5");//åˆ›å»ºä¸€ä¸ªæŒ‰é’®ï¼Œæ˜¾ç¤ºæ–‡æœ¬ä¸º5
+        JButton b6 = new JButton("6");//åˆ›å»ºä¸€ä¸ªæŒ‰é’®ï¼Œæ˜¾ç¤ºæ–‡æœ¬ä¸º6
+        JButton b7 = new JButton("7");//åˆ›å»ºä¸€ä¸ªæŒ‰é’®ï¼Œæ˜¾ç¤ºæ–‡æœ¬ä¸º7
+        JButton b8 = new JButton("8");//åˆ›å»ºä¸€ä¸ªæŒ‰é’®ï¼Œæ˜¾ç¤ºæ–‡æœ¬ä¸º8
+        JButton b9 = new JButton("9");//åˆ›å»ºä¸€ä¸ªæŒ‰é’®ï¼Œæ˜¾ç¤ºæ–‡æœ¬ä¸º9
+        JButton b0 = new JButton("0");//åˆ›å»ºä¸€ä¸ªæŒ‰é’®ï¼Œæ˜¾ç¤ºæ–‡æœ¬ä¸º0
+        JButton ad = new JButton("+");//åˆ›å»ºä¸€ä¸ªæŒ‰é’®ï¼Œæ˜¾ç¤ºæ–‡æœ¬ä¸º+
+        JButton mn = new JButton("-");//åˆ›å»ºä¸€ä¸ªæŒ‰é’®ï¼Œæ˜¾ç¤ºæ–‡æœ¬ä¸º-
+        JButton xs = new JButton("*");//åˆ›å»ºä¸€ä¸ªæŒ‰é’®ï¼Œæ˜¾ç¤ºæ–‡æœ¬ä¸º*
+        JButton cu = new JButton("Ã·");//åˆ›å»ºä¸€ä¸ªæŒ‰é’®ï¼Œæ˜¾ç¤ºæ–‡æœ¬ä¸ºÃ·
+        JButton eq = new JButton("=");//åˆ›å»ºä¸€ä¸ªæŒ‰é’®ï¼Œæ˜¾ç¤ºæ–‡æœ¬ä¸º=
+        JButton po = new JButton(".");//åˆ›å»ºä¸€ä¸ªæŒ‰é’®ï¼Œæ˜¾ç¤ºæ–‡æœ¬ä¸º.
+        JButton bk = new JButton("â†");//åˆ›å»ºä¸€ä¸ªæŒ‰é’®ï¼Œæ˜¾ç¤ºæ–‡æœ¬ä¸ºâ†
+        JButton cl = new JButton("C");//åˆ›å»ºä¸€ä¸ªæŒ‰é’®ï¼Œæ˜¾ç¤ºæ–‡æœ¬ä¸ºC
 
-        b1.setBounds(0, 50, 100, 60);            //°´Å¥1ÉèÖÃÎ»ÖÃ´óÐ¡
-        b1.setFont(new Font("dialog", 1, 30));     //ÉèÖÃ×ÖÌå
-        paneNum.add(b1);                                              //Ãæ°åÌí¼Ób1°´Å¥
-        b1.setMnemonic('Q');                                            //Îª°´Å¥°ó¶¨Êý×Ö¼ü(²âÊÔ)===========================Ê©¹¤±ê¼Ç=======================================
+        b1.setBounds(0, 50, 100, 60);            //æŒ‰é’®1è®¾ç½®ä½ç½®å¤§å°
+        b1.setFont(new Font("dialog", 1, 30));     //è®¾ç½®å­—ä½“
+        paneNum.add(b1);                                              //é¢æ¿æ·»åŠ b1æŒ‰é’®
+        b1.setMnemonic('Q');                                            //ä¸ºæŒ‰é’®ç»‘å®šæ•°å­—é”®(æµ‹è¯•)===========================æ–½å·¥æ ‡è®°=======================================
         b2.setBounds(100, 50, 100, 60);
         b2.setFont(new Font("dialog", 1, 30));
         paneNum.add(b2);
@@ -306,18 +306,18 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
         cl.setFont(new Font("dialog", 1, 30));
         paneNum.add(cl);
 
-        b0.addActionListener(new ActionListener() {            //b0°´Å¥Ìí¼ÓÊÂ¼þ¼àÌý--ÄäÃûº¯Êý
+        b0.addActionListener(new ActionListener() {            //b0æŒ‰é’®æ·»åŠ äº‹ä»¶ç›‘å¬--åŒ¿åå‡½æ•°
             @Override
-            public void actionPerformed(ActionEvent e) {       //ÊÂ¼þ´¦Àí
-                System.out.println("°´ÏÂ°´Å¥0");                //¿ØÖÆÌ¨´òÓ¡
-                sBuilder.append("0");                        //sBuilder×Ö·û´®Ìí¼Ó¡°0¡±
-                label1.setText(sBuilder.toString());         //±êÇ©ÎÄ±¾ÉèÖÃÎªsBuilderµÄString
+            public void actionPerformed(ActionEvent e) {       //äº‹ä»¶å¤„ç†
+                System.out.println("æŒ‰ä¸‹æŒ‰é’®0");                //æŽ§åˆ¶å°æ‰“å°
+                sBuilder.append("0");                        //sBuilderå­—ç¬¦ä¸²æ·»åŠ â€œ0â€
+                label1.setText(sBuilder.toString());         //æ ‡ç­¾æ–‡æœ¬è®¾ç½®ä¸ºsBuilderçš„String
             }
         });
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("°´ÏÂ°´Å¥1");
+                System.out.println("æŒ‰ä¸‹æŒ‰é’®1");
                 sBuilder.append("1");
                 label1.setText(sBuilder.toString());
             }
@@ -325,7 +325,7 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
         b2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("°´ÏÂ°´Å¥2");
+                System.out.println("æŒ‰ä¸‹æŒ‰é’®2");
                 sBuilder.append("2");
                 label1.setText(sBuilder.toString());
             }
@@ -333,7 +333,7 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
         b3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("°´ÏÂ°´Å¥3");
+                System.out.println("æŒ‰ä¸‹æŒ‰é’®3");
                 sBuilder.append("3");
                 label1.setText(sBuilder.toString());
             }
@@ -341,7 +341,7 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
         b4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("°´ÏÂ°´Å¥4");
+                System.out.println("æŒ‰ä¸‹æŒ‰é’®4");
                 sBuilder.append("4");
                 label1.setText(sBuilder.toString());
             }
@@ -349,7 +349,7 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
         b5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("°´ÏÂ°´Å¥5");
+                System.out.println("æŒ‰ä¸‹æŒ‰é’®5");
                 sBuilder.append("5");
                 label1.setText(sBuilder.toString());
             }
@@ -357,7 +357,7 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
         b6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("°´ÏÂ°´Å¥6");
+                System.out.println("æŒ‰ä¸‹æŒ‰é’®6");
                 sBuilder.append("6");
                 label1.setText(sBuilder.toString());
             }
@@ -365,7 +365,7 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
         b7.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("°´ÏÂ°´Å¥7");
+                System.out.println("æŒ‰ä¸‹æŒ‰é’®7");
                 sBuilder.append("7");
                 label1.setText(sBuilder.toString());
             }
@@ -373,7 +373,7 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
         b8.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("°´ÏÂ°´Å¥8");
+                System.out.println("æŒ‰ä¸‹æŒ‰é’®8");
                 sBuilder.append("8");
                 label1.setText(sBuilder.toString());
             }
@@ -381,7 +381,7 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
         b9.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("°´ÏÂ°´Å¥9");
+                System.out.println("æŒ‰ä¸‹æŒ‰é’®9");
                 sBuilder.append("9");
                 label1.setText(sBuilder.toString());
             }
@@ -390,54 +390,54 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
         ad.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("°´ÏÂ°´Å¥¼ÓºÅ");
+                System.out.println("æŒ‰ä¸‹æŒ‰é’®åŠ å·");
                 a = Double.parseDouble(sBuilder.toString());
                 sBuilder = new StringBuilder();
                 label1.setText("+");
-                ip = 0;      //½«0×÷Îª¼Ó·¨µÄ±êÖ¾
+                ip = 0;      //å°†0ä½œä¸ºåŠ æ³•çš„æ ‡å¿—
             }
         });
         mn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("°´ÏÂ°´Å¥¼õºÅ");
+                System.out.println("æŒ‰ä¸‹æŒ‰é’®å‡å·");
                 a = Double.parseDouble(sBuilder.toString());
                 sBuilder = new StringBuilder();
                 label1.setText("-");
-                ip = 1;     //½«1×÷Îª¼õ·¨µÄ±êÖ¾
+                ip = 1;     //å°†1ä½œä¸ºå‡æ³•çš„æ ‡å¿—
             }
         });
         xs.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("°´ÏÂ°´Å¥³ËºÅ");
+                System.out.println("æŒ‰ä¸‹æŒ‰é’®ä¹˜å·");
                 a = Double.parseDouble(sBuilder.toString());
                 sBuilder = new StringBuilder();
                 label1.setText("*");
-                ip = 2;    //½«2×÷Îª³Ë·¨µÄ±êÖ¾
+                ip = 2;    //å°†2ä½œä¸ºä¹˜æ³•çš„æ ‡å¿—
             }
         });
         cu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("°´ÏÂ°´Å¥³ýºÅ");
+                System.out.println("æŒ‰ä¸‹æŒ‰é’®é™¤å·");
                 a = Double.parseDouble(sBuilder.toString());
                 sBuilder = new StringBuilder();
-                label1.setText("¡Â");
-                ip = 3;         //½«3×÷Îª³ý·¨µÄ±êÖ¾
+                label1.setText("Ã·");
+                ip = 3;         //å°†3ä½œä¸ºé™¤æ³•çš„æ ‡å¿—
             }
         });
         eq.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {     //ÕâÀïÊÇËã·¨
-                System.out.println("°´ÏÂ°´Å¥µÈÓÚºÅ");
-                if (!"".equals(sBuilder.toString()) && (!(a == 0))) {   //µ±sBuilder²»ÊÇ¿Õ×Ö·û´®ÇÒ²»Îª0Ê±µÄif
-                    b = Double.parseDouble(sBuilder.toString());  //½«b×÷Îª³ýÊý
-                    if (ip == 0) {            //ipÎª0Ê±-¼Ó·¨±êÖ¾
-                        result = a + b;     //½á¹û¼ÆËã
-                        label1.setText(result.toString());//±êÇ©ÉèÖÃÎª½á¹û
-                        sBuilder = new StringBuilder();//³äÖµsBuilder
-                        sBuilder.append(result);//½«½á¹û¸½¼Óµ½sBuilderÉÏ
+            public void actionPerformed(ActionEvent e) {     //è¿™é‡Œæ˜¯ç®—æ³•
+                System.out.println("æŒ‰ä¸‹æŒ‰é’®ç­‰äºŽå·");
+                if (!"".equals(sBuilder.toString()) && (!(a == 0))) {   //å½“sBuilderä¸æ˜¯ç©ºå­—ç¬¦ä¸²ä¸”ä¸ä¸º0æ—¶çš„if
+                    b = Double.parseDouble(sBuilder.toString());  //å°†bä½œä¸ºé™¤æ•°
+                    if (ip == 0) {            //ipä¸º0æ—¶-åŠ æ³•æ ‡å¿—
+                        result = a + b;     //ç»“æžœè®¡ç®—
+                        label1.setText(result.toString());//æ ‡ç­¾è®¾ç½®ä¸ºç»“æžœ
+                        sBuilder = new StringBuilder();//å……å€¼sBuilder
+                        sBuilder.append(result);//å°†ç»“æžœé™„åŠ åˆ°sBuilderä¸Š
                     } else if (ip == 1) {
                         result = a - b;
                         label1.setText(result.toString());
@@ -462,33 +462,33 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
         po.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("°´ÏÂ°´Å¥Ð¡Êýµã");
-                sBuilder.append(".");//Ìí¼ÓÒ»¸ö-µã-ºÅ
+                System.out.println("æŒ‰ä¸‹æŒ‰é’®å°æ•°ç‚¹");
+                sBuilder.append(".");//æ·»åŠ ä¸€ä¸ª-ç‚¹-å·
                 label1.setText(sBuilder.toString());
             }
         });
         cl.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("°´ÏÂ°´Å¥Çå³ý¼ü");
-                sBuilder = new StringBuilder();//³äÖµsBuilder
-                label1.setText("");//½«±êÇ©ÉèÖÃÎª¿Õ×Ö·û
+                System.out.println("æŒ‰ä¸‹æŒ‰é’®æ¸…é™¤é”®");
+                sBuilder = new StringBuilder();//å……å€¼sBuilder
+                label1.setText("");//å°†æ ‡ç­¾è®¾ç½®ä¸ºç©ºå­—ç¬¦
             }
         });
         bk.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("°´ÏÂ°´Å¥É¾³ý¼ü");
-                if (!"".equals(sBuilder.toString())) {//½«sBuilder²»Îª¿Õ×Ö·û´®Ê±
-                    sBuilder.deleteCharAt(sBuilder.length() - 1);//sBuilderÉ¾³ý×îºóÒ»Î»
-                    label1.setText(sBuilder.toString());//ÖØÖÃ±êÇ©
+                System.out.println("æŒ‰ä¸‹æŒ‰é’®åˆ é™¤é”®");
+                if (!"".equals(sBuilder.toString())) {//å°†sBuilderä¸ä¸ºç©ºå­—ç¬¦ä¸²æ—¶
+                    sBuilder.deleteCharAt(sBuilder.length() - 1);//sBuilderåˆ é™¤æœ€åŽä¸€ä½
+                    label1.setText(sBuilder.toString());//é‡ç½®æ ‡ç­¾
                 }
             }
         });
 
-        this.setVisible(true);//ÉèÖÃ´°¿ÚÎª¿É¼û--ËùÓÐ×é¼þ»æÖÆÍê³ÉºóÉèÖÃ´°¿Ú¿É¼û
+        this.setVisible(true);//è®¾ç½®çª—å£ä¸ºå¯è§--æ‰€æœ‰ç»„ä»¶ç»˜åˆ¶å®ŒæˆåŽè®¾ç½®çª—å£å¯è§
 
-        t = new Thread(new Runnable() {   //¹ØÓÚÊ±¼äÏÔÊ¾µÄ¶àÏß³Ì
+        t = new Thread(new Runnable() {   //å…³äºŽæ—¶é—´æ˜¾ç¤ºçš„å¤šçº¿ç¨‹
             @Override
 
             public void run() {
@@ -496,7 +496,7 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
                     try {
 
                         Thread.sleep(500);
-                        SimpleDateFormat dat = new SimpleDateFormat(" µ±Ç°Ê±¼ä:yyyy-MM-dd  " + "HH:mm:ss");
+                        SimpleDateFormat dat = new SimpleDateFormat(" å½“å‰æ—¶é—´:yyyy-MM-dd  " + "HH:mm:ss");
                         String Tome = dat.format(new Date());
                         label2.setText(Tome);
                     } catch (InterruptedException e) {
@@ -506,8 +506,8 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
                 }
             }
         });
-        t.setName("Ê±¼äÏÔÊ¾Ïß³Ì");
-        t.start();  //Æô¶¯Ïß³Ì
+        t.setName("æ—¶é—´æ˜¾ç¤ºçº¿ç¨‹");
+        t.start();  //å¯åŠ¨çº¿ç¨‹
 
         checkLabel.setPreferredSize(new Dimension(300,15));
         checkLabel.setFont(labelFont);
@@ -518,20 +518,20 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
                     try {
                         Thread.sleep(500);
                     }catch (Exception e){
-                        System.out.println("checkThread³ö´íÁË");
+                        System.out.println("checkThreadå‡ºé”™äº†");
                     }
                     ThreadGroup threadGroup = Thread.currentThread().getThreadGroup();
                     int noThreads = threadGroup.activeCount();
                     Thread[] lstThreads = new Thread[noThreads];
                     threadGroup.enumerate(lstThreads);
                     for (int i = 0; i < noThreads; i++) {
-                        System.out.println("Ïß³ÌºÅ£º" + i + " = " + lstThreads[i].getName());
+                        System.out.println("çº¿ç¨‹å·ï¼š" + i + " = " + lstThreads[i].getName());
                     }
-                    checkLabel.setText("  µ±Ç°ÔËÐÐÏß³ÌÊý>>>"+noThreads+"<<<");
+                    checkLabel.setText("  å½“å‰è¿è¡Œçº¿ç¨‹æ•°>>>"+noThreads+"<<<");
                 }
             }
         });
-        checkThread.setName("Ïß³Ì¼ì²â³ÌÐò");
+        checkThread.setName("çº¿ç¨‹æ£€æµ‹ç¨‹åº");
         checkThread.start();
 
 
@@ -548,13 +548,13 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
 
 
 
-    public static void main(String[] args) {   //JAVAµÄmain·½·¨
+    public static void main(String[] args) {   //JAVAçš„mainæ–¹æ³•
 //        Calua A =new Calua();
 //        new Thread(A).start();
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new MyJFrame(new CaluaV2());  //ÊµÀý»¯Calua·½·¨
+                new MyJFrame(new CaluaV2());  //å®žä¾‹åŒ–Caluaæ–¹æ³•
             }
         });
 
@@ -568,17 +568,17 @@ public class CaluaV2 extends JFrame { //ÀàCalua¼Ì³ÐÁËJFrameÀà£¨´°¿ÚÀà£©
 
 //==============================================================================================================
 
-//class asd implements Runnable {  //¶îÍâµÄ¶àÏß³ÌÀà
+//class asd implements Runnable {  //é¢å¤–çš„å¤šçº¿ç¨‹ç±»
 //    @Override
 //    public void run() {
 //        while (true) {
 //            try {
 //
-//                Thread.sleep(1000);  //ÐÝÃß1s
-//                SimpleDateFormat dat = new SimpleDateFormat("yyyy-MM-dd" + "HH:mm:ss");//¸ñÊ½
-//                String Tome = dat.format(new Date());//¸ñÊ½»¯Ê±¼ä
-//                System.out.println(Tome);//´òÓ¡
-//            } catch (InterruptedException e) {  //²¶×½Òì³£
+//                Thread.sleep(1000);  //ä¼‘çœ 1s
+//                SimpleDateFormat dat = new SimpleDateFormat("yyyy-MM-dd" + "HH:mm:ss");//æ ¼å¼
+//                String Tome = dat.format(new Date());//æ ¼å¼åŒ–æ—¶é—´
+//                System.out.println(Tome);//æ‰“å°
+//            } catch (InterruptedException e) {  //æ•æ‰å¼‚å¸¸
 //                e.printStackTrace();
 //
 //            }
